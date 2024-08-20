@@ -1,0 +1,16 @@
+name: Workflow for checking http status codes
+
+on: [push]
+
+jobs:
+  build:
+    name: HTTP Status
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v1
+      - name: Check HTTP status of production site
+        uses: ./
+        with:
+          sites: '["https://wsi-atena-102-test.s3.amazonaws.com/Access_logs.txt"]'
+          expected: '[201, 404, 502, 500, 200, 304, 204]'
