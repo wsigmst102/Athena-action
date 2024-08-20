@@ -4,13 +4,11 @@ on: [push]
 
 jobs:
   build:
-    name: HTTP Status
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v1
-      - name: Check HTTP status of production site
-        uses: ./
-        with:
+    # ... uses ....
+    - name: Check http status code of production site
+      uses: lakuapik/gh-actions-http-status@v1
+      with:
           sites: '["https://wsi-atena-102-test.s3.amazonaws.com/Access_logs.txt"]'
           expected: '[201, 404, 502, 500, 200, 304, 204]'
