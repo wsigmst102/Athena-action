@@ -5,7 +5,7 @@ env:
   AWS_REGION: us-east-1
 with:
   sql-input: 'CREATE EXTERNAL TABLE IF NOT EXISTS wsiTable(test VARCHAR(255)) LOCATION 's3://wsi-atena-102-test/';'
-
-  ddb-id: 'test'
+  ddb-id: 'wsiTable'
   ddb-table: 'test'
-  wait: 'false'
+  wait: 'true'
+  output-location: s3://wsi-atena-102-test/github-actions-result/
