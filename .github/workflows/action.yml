@@ -3,9 +3,9 @@ env:
   AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
   AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
   AWS_REGION: us-east-1
-with:
+  with:
   sql-input: 'SELECT split_part(test, ' ', 9) AS server_status, split_part(test, ' ', 10) AS response_status FROM wsiTable'
   ddb-id: 'wsiTable'
   ddb-table: 'test'
   wait: 'true'
-  output-location: 's3://wsi-atena-102-test/github-actions-result/'
+  output-location: 's3://wsi-atena-102-test/github-actions-result/result.csv'
