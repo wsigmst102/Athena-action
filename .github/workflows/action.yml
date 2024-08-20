@@ -1,14 +1,27 @@
-name: Workflow for checking http status codes
-
-on: [push]
-
+name: Main CI
+   
+on:
+  push:
+    branches:
+      - main
+   
 jobs:
-  build:
-    runs-on: ubuntu-latest
+  build-and-deploy:
+    runs-on: ubuntu-18.04
     steps:
-    # ... uses ....
-    - name: Check http status code of production site
-      uses: lakuapik/gh-actions-http-status@v1
-      with:
-          sites: '["https://wsi-atena-102-test.s3.amazonaws.com/Access_logs.txt"]'
-          expected: '[201, 404, 502, 500, 200, 304, 204]' 
+      - name: git clone
+        uses: actions/checkout@v2
+   
+      - name: npm install
+        run: npm install
+   
+      - name: npm build
+        run: npm run build
+   
+      - name: deploy
+        env:
+          AWS_ACCESS_KEY_ID: '$'
+          AWS_SECRET_ACCESS_KEY: '$'
+        run:
+          aws s3 cp --recursive --region us-east-1 https://wsi-atena-102-test.s3.amazonaws.com/github-actions-result/
+   
