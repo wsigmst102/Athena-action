@@ -4,7 +4,7 @@ env:
   AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
   AWS_REGION: us-east-1
 with:
-  sql-input: 'SELECT split_part(test, ' ', 9) AS server_status, split_part(test, ' ', 10) AS response_status FROM wsiTable;'
+  sql-input: 'SELECT split_part(test, ' ', 9) AS server_status, split_part(test, ' ', 10) AS response_status FROM wsiTable'
   ddb-id: 'wsiTable'
   ddb-table: 'test'
   wait: 'true'
