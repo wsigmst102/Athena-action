@@ -6,6 +6,5 @@ env:
   with:
   sql-input: 'SELECT split_part(test, ' ', 9) AS server_status, split_part(test, ' ', 10) AS response_status FROM wsiTable'
   ddb-id: 'wsiTable'
-  ddb-table: 'test'
   wait: 'true'
   output-location: 's3://wsi-atena-102-test/github-actions-result/result.csv'
